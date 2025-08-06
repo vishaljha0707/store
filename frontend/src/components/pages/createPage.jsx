@@ -3,6 +3,7 @@ import { Container, TextField, Button, Typography, Box } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
 const CreateProduct = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -19,7 +20,11 @@ const CreateProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/products", formData);
+   await axios.post(`${import.meta.env.VITE_API_URL}/api/products`, formData);
+
+
+
+
       alert("Product Created Successfully!");
       navigate("/");
     } catch (error) {

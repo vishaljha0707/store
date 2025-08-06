@@ -7,12 +7,14 @@ import {
   Button,
   Typography,
   CircularProgress,
-  Box
+  Box,
 } from "@mui/material";
 
 const UpdateProduct = () => {
-  const { id } = useParams(); // 🔑 Get product ID from URL
+  const { id } = useParams();
   const navigate = useNavigate();
+  const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
+
   const [formData, setFormData] = useState({
     name: "",
     price: "",
@@ -21,10 +23,9 @@ const UpdateProduct = () => {
 
   const [loading, setLoading] = useState(true);
 
-  // 👇 Fetch the existing product data by ID
   const fetchProductById = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/products/${id}`);
+      const res = await axios.get(`${API_BASE_URL}/api/products/${id}`);
       const data = res.data;
 
       if (data) {
@@ -55,8 +56,8 @@ const UpdateProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/products/${id}`, formData);
-      navigate("/"); // ✅ Redirect to Home after update
+      await axios.put(`${API_BASE_URL}/api/products/${id}`, formData);
+      navigate("/");
     } catch (err) {
       console.error("Failed to update product", err);
     }
