@@ -7,9 +7,8 @@ const app = express();
 
 
 app.use(cors({
-  origin: "*", 
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true 
+  origin: "https://store-eight-dun.vercel.app", // your frontend vercel URL
+  credentials: true
 }));
 
 // Middleware
